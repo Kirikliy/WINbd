@@ -13,7 +13,7 @@ export const AuthGuard = () => {
     hasUser: !!store.user.data,
   }));
   const { isLoading } = authApi.useGetUserQuery(undefined, { skip: !authenticated || hasUser });
-  console.log(authenticated, hasUser);
+
   if (!authenticated) return <Navigate replace to={PAGES.auth.signIn} />;
 
   if (isLoading) return <PageLoading />;

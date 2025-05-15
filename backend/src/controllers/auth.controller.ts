@@ -32,7 +32,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
       res.status(201).json({
         user: {
-          id: user._id,
+          _id: user._id,
           login: user.login,
         },
       });
@@ -68,7 +68,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
     res.json({
       user: {
-        id: user._id,
+        _id: user._id,
         login: user.login,
       },
     });
