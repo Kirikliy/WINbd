@@ -1,6 +1,7 @@
 import { CookieOptions, Request, Response } from "express";
 import User from "@/models/user.model";
 import { generateToken } from "@/utils/jwt.utils";
+import { validationResult } from "express-validator";
 
 const COOKIE_OPTIONS: CookieOptions = {
   httpOnly: true,
@@ -10,7 +11,14 @@ const COOKIE_OPTIONS: CookieOptions = {
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { name, login, password } = req.body;
+    const result = validationResult(req);
+
+    if (!result.isEmpty()) {
+      res.status(400).send({ error: "Invalid user data" });
+      return;
+    }
+
+    const { login, password } = req.body;
 
     const userExists = await User.findOne({ login });
 
@@ -20,7 +28,6 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     }
 
     const user = await User.create({
-      name,
       login,
       password,
     });
@@ -47,6 +54,13 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
+    const result = validationResult(req);
+
+    if (!result.isEmpty()) {
+      res.status(400).send({ error: "Invalid user data" });
+      return;
+    }
+
     const { login, password } = req.body;
     const user = await User.findOne({ login });
 

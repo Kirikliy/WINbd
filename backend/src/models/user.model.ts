@@ -9,12 +9,12 @@ const userSchema = new Schema<User>(
       required: [true, "Login is required"],
       unique: true,
       trim: true,
-      minlength: [3, "Login must be at least 3 characters"],
+      minlength: [4, "Login must be at least 4 characters"],
     },
     password: {
       type: String,
       required: [true, "Password is required"],
-      minlength: [6, "Password must be at least 6 characters"],
+      minlength: [1, "Password must be at least 1 characters"],
     },
   },
   {

@@ -15,7 +15,7 @@ export const password = string().required(i18n.t('requiredField'));
 
 export const login = string()
   .required(i18n.t('requiredField'))
-  .min(4, i18n.t('minFieldLength', { length: 6 }));
+  .min(4, i18n.t('minFieldLength', { length: 4 }));
 // .max(12, i18n.t('maxFieldLength', { length: 12 }))
 // .test(
 //   'character',
