@@ -1,12 +1,10 @@
 import { memo, useEffect, useRef } from 'react';
-import { Box } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 import EditorJS from '@editorjs/editorjs';
 import { EDITOR_TOOLS } from './consts';
 import { Props } from './types';
+import { EditorBox } from './styled';
 
 export const Editor = ({ ref: externalEditorRef, data, onlyRead, className }: Props) => {
-  const { t } = useTranslation();
   const defaultEditorRef = useRef<EditorJS>(externalEditorRef?.current ?? null);
   const editorRefHolder = useRef<HTMLDivElement>(null);
   const editorRef = externalEditorRef ?? defaultEditorRef;
@@ -30,7 +28,7 @@ export const Editor = ({ ref: externalEditorRef, data, onlyRead, className }: Pr
     });
   }, []);
 
-  return <Box ref={editorRefHolder} className={className} />;
+  return <EditorBox ref={editorRefHolder} className={className} />;
 };
 
 export default memo(Editor);
