@@ -11,6 +11,8 @@ import { useDispatch } from '@/app/store';
 import { logout } from '@/entities/user/model/actions';
 import { useTranslation } from 'react-i18next';
 import NotificationsButton from '@/widgets/notifications/ui/NotificationsButton';
+import Link from '@/shared/ui/Link';
+import PAGES from '@/app/consts/pages';
 
 export default function MenuAppBar() {
   const dispatch = useDispatch();
@@ -30,7 +32,9 @@ export default function MenuAppBar() {
       <Container maxWidth="xl">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Frontend
+            <Link color="inherit" underline="none" to={PAGES.main}>
+              {t('articles')}
+            </Link>
           </Typography>
           <NotificationsButton />
           <IconButton size="large" onClick={handleMenu} color="inherit">
