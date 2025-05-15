@@ -17,9 +17,7 @@ build/
 .env.production.local
 
 # Uploads
-uploads/*
-!uploads/files/.gitkeep
-!uploads/images/.gitkeep
+
 
 # IDE
 .idea/
